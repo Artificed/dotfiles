@@ -32,6 +32,13 @@ return {
           },
         },
       },
+      pyright = {
+        settings = {
+          python = {
+            pythonPath = "/opt/anaconda3/envs/AI/bin/python",
+          },
+        },
+      },
     },
     setup = {
       ["ruff"] = function()
