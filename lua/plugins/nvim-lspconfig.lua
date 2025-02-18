@@ -7,6 +7,13 @@ return {
       },
       rust_analyzer = {
         enabled = false,
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = { command = "clippy" },
+            cargo = { loadOutDirsFromCheck = true },
+            procMacro = { enable = true },
+          },
+        },
       },
       ruff = {
         cmd_env = { RUFF_TRACE = "messages" },
@@ -39,7 +46,6 @@ return {
           },
         },
       },
-
       gopls = {
         settings = {
           gopls = {
@@ -78,7 +84,6 @@ return {
           },
         },
       },
-
       tailwindcss = {
         filetypes_exclude = { "markdown" },
         filetypes_include = {},
@@ -87,14 +92,10 @@ return {
     setup = {
       ["ruff"] = function()
         LazyVim.lsp.on_attach(function(client, _)
-          -- Disable hover in favor of Pyright
           client.server_capabilities.hoverProvider = false
         end, "ruff")
       end,
-
       gopls = function(_, opts)
-        -- Workaround for gopls not supporting semanticTokensProvider
-        -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
         LazyVim.lsp.on_attach(function(client, _)
           if not client.server_capabilities.semanticTokensProvider then
             local semantic = client.config.capabilities.textDocument.semanticTokens
@@ -109,7 +110,6 @@ return {
           end
         end, "gopls")
       end,
-
       tailwindcss = function(_, opts)
         local tw = LazyVim.lsp.get_raw_config("tailwindcss")
         opts.filetypes = opts.filetypes or {}
