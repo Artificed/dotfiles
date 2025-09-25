@@ -1,0 +1,11 @@
+theme = Catppuccin Mocha
+
+background = "#151515"
+
+cursor-style = block
+
+window-colorspace = "display-p3"
+
+keybind = cmd+s>r=reload_config
+
+font-feature = -calt, -liga, -dlig
