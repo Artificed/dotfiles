@@ -38,6 +38,9 @@ customCommands:
           - name: "Chore"
             description: "Other changes that don't modify src or test files"
             value: "chore"
+          - name: "Reverts"
+            description: "Reverts a previous commit"
+            value: "revert"
       - type: "input"
         title: "Enter the scope(s) of this change (optional)"
         key: "Scopes"
@@ -47,4 +50,3 @@ customCommands:
       - type: "confirm"
         title: "Is the commit message correct?"
         body: "{{ .Form.Type }}{{if .Form.Scopes}}({{ .Form.Scopes }}){{end}}: {{ .Form.Description }}"
-
